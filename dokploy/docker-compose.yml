@@ -38,3 +38,9 @@ volumes:
   dokploy-data:
   postgres_data:
   redis_data:
+
+networks:
+  default:
+    name: dokploy-network
+    driver: overlay
+    attachable: true
