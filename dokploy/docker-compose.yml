@@ -14,9 +14,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - dokploy-data:/app/data
 
-  postgres:
+  dokploy-postgres:
     image: postgres:16
-    container_name: teamflow-postgres
+    container_name: dokploy-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-teamflow}
@@ -27,9 +27,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  redis:
+  dokploy-redis:
     image: redis:7
-    container_name: teamflow-redis
+    container_name: dokploy-redis
     restart: unless-stopped
     ports:
       - "${REDIS_PORT:-6379}:6379"
