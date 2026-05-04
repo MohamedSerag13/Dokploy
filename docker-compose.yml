@@ -1,7 +1,24 @@
+version: "3.8"
+
 services:
+  dokploy:
+    image: dokploy/dokploy:latest
+    container_name: dokploy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "3000:3000"
+    env_file:
+      - dokploy/.env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - dokploy-data:/app/data
+
   postgres:
     image: postgres:16
     container_name: teamflow-postgres
+    restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-teamflow}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-teamflow}
@@ -14,11 +31,13 @@ services:
   redis:
     image: redis:7
     container_name: teamflow-redis
+    restart: unless-stopped
     ports:
       - "${REDIS_PORT:-6379}:6379"
     volumes:
       - redis_data:/data
 
 volumes:
+  dokploy-data:
   postgres_data:
   redis_data:

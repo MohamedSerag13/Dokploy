@@ -13,11 +13,11 @@ Before deploying Dokploy, you must configure a wildcard DNS record for your doma
 
 ## How to Spin Up on a Fresh VPS
 1. Clone this repository to your VPS.
-2. Navigate to this directory: `cd dokploy/`
+
 3. Copy the example environment file and configure your variables:
    ```bash
-   cp .env.example .env
-   # Edit .env with your specific values if needed
+   cp dokploy/.env.example dokploy/.env
+   # Edit dokploy/.env with your specific values if needed
    ```
 4. Start the Dokploy services in the background:
    ```bash
