@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  dokploy:
+    image: dokploy/dokploy:latest
+    container_name: dokploy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "3000:3000"
+    environment:
+      - DOKPLOY_URL=${DOKPLOY_URL}
+      - TRAEFIK_ACME_EMAIL=${TRAEFIK_ACME_EMAIL}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - dokploy-data:/app/data
+
+volumes:
+  dokploy-data:
